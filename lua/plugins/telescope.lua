@@ -4,6 +4,13 @@ return {
     "nvim-telescope/telescope.nvim",
     keys = {
       -- add a keymap to browse plugin files
+      { "<leader>/", false },
+      -- change a keymap
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find Text" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffers" },
+      { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags" },
+
       -- stylua: ignore
       {
         "<leader>fp",
