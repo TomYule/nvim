@@ -1,84 +1,80 @@
 return {
   "folke/which-key.nvim",
-  opts = function(_, opts)
-    -- 确保 defaults 表存在
-    opts.defaults = opts.defaults or {}
+  -- 叶子节点（具体快捷键）通过 keys + desc 定义
+  keys = {
+    -- ================= Find (查找) =================
+    { "<leader>ff", desc = "📄 Find File (查找文件)" },
+    { "<leader>fg", desc = "📄 Git Files (Git 文件)" },
+    { "<leader>fr", desc = "🕒 Recent (最近访问)" },
+    { "<leader>fF", desc = "📂 Cwd Files (当前目录)" },
+    { "<leader>fc", desc = "📄 Config (配置文件)" },
+    { "<leader>fp", desc = "📂 Projects (项目列表)" },
+    { "<leader>,",  desc = "📋 Buffers (缓冲区列表)" },
+    { "<leader>/",  desc = "🔍 Grep (Root) (全局搜索)" },
+    { "<leader>:",  desc = "📜 Commands (命令历史)" },
 
-    -- 定义自定义的中英双语标签
-    local translations = {
-      -- ================= 组名 (Groups) =================
-      ["<leader>b"] = { name = "📂 Buffers (缓冲区)" },
-      ["<leader>c"] = { name = "💻 Code (代码操作)" },
-      ["<leader>d"] = { name = "🐞 Debug (调试)" },
-      ["<leader>f"] = { name = "🔍 Find (查找)" },
-      ["<leader>g"] = { name = "🔀 Git (版本控制)" },
-      ["<leader>l"] = { name = "🔎 LSP (语言服务)" },
-      ["<leader>n"] = { name = "🔔 Notify (通知)" },
-      ["<leader>p"] = { name = "📦 Project (项目)" },
-      ["<leader>q"] = { name = "🚪 Quit (退出)" },
-      ["<leader>s"] = { name = "🔍 Search (搜索)" },
-      ["<leader>t"] = { name = "💻 Terminal (终端)" },
-      ["<leader>u"] = { name = "🎨 UI (界面设置)" },
-      ["<leader>w"] = { name = "🪟 Windows (窗口)" },
-      ["<leader>x"] = { name = "❌ Diag (诊断)" },
+    -- ================= Search (搜索) =================
+    { "<leader>sg", desc = "🔍 Grep (全局搜索)" },
+    { "<leader>sw", desc = "🔍 Word (当前词)" },
+    { "<leader>sW", desc = "🔍 Visual (选区词)" },
+    { "<leader>sh", desc = "📖 Help (帮助文档)" },
+    { "<leader>si", desc = "🔤 Icons (图标)" },
+    { "<leader>sd", desc = "❌ Diagnostics (诊断)" },
 
-      -- ================= 常用快捷键 (Keys) =================
-      
-      -- Find (查找)
-      ["<leader>ff"] = { "📄 Find File (查找文件)" },
-      ["<leader>fg"] = { "📄 Git Files (Git 文件)" },
-      ["<leader>fr"] = { "🕒 Recent (最近访问)" },
-      ["<leader>fF"] = { "📂 Cwd Files (当前目录)" },
-      ["<leader>fc"] = { "📄 Config (配置文件)" },
-      ["<leader>fp"] = { "📂 Projects (项目列表)" },
-      ["<leader>,"]  = { "📋 Buffers (缓冲区列表)" },
-      ["<leader>/"]  = { "🔍 Grep (Root) (全局搜索)" },
-      ["<leader>:"]  = { "📜 Commands (命令历史)" },
+    -- ================= Buffers (缓冲区) =================
+    { "<leader>bd", desc = "❌ Delete (关闭)" },
+    { "<leader>bn", desc = "➡️ Next (下一个)" },
+    { "<leader>bp", desc = "⬅️ Prev (上一个)" },
+    { "<leader>bl", desc = "⬅️ Left (关闭左侧)" },
+    { "<leader>br", desc = "➡️ Right (关闭右侧)" },
 
-      -- Search (搜索)
-      ["<leader>sg"] = { "🔍 Grep (全局搜索)" },
-      ["<leader>sw"] = { "🔍 Word (当前词)" },
-      ["<leader>sW"] = { "🔍 Visual (选区词)" },
-      ["<leader>sh"] = { "📖 Help (帮助文档)" },
-      ["<leader>si"] = { "🔤 Icons (图标)" },
-      ["<leader>sd"] = { "❌ Diagnostics (诊断)" },
+    -- ================= Git (版本控制) =================
+    { "<leader>gs", desc = "📋 Status (状态)" },
+    { "<leader>gd", desc = "📊 Diff (差异)" },
+    { "<leader>gb", desc = "📦 Blame (追溯)" },
+    { "<leader>gc", desc = "📜 Commits (提交)" },
+    { "<leader>gi", desc = "📥 Issues (问题)" },
+    { "<leader>gp", desc = "🔀 Pull Requests (拉取请求)" },
 
-      -- Buffers (缓冲区)
-      ["<leader>bd"] = { "❌ Delete (关闭)" },
-      ["<leader>bn"] = { "➡️ Next (下一个)" },
-      ["<leader>bp"] = { "⬅️ Prev (上一个)" },
-      ["<leader>bl"] = { "⬅️ Left (关闭左侧)" },
-      ["<leader>br"] = { "➡️ Right (关闭右侧)" },
+    -- ================= Code / LSP (代码) =================
+    { "<leader>cc", desc = "💡 Actions (代码操作)" },
+    { "<leader>cf", desc = "✨ Format (格式化)" },
+    { "<leader>cr", desc = "✏️ Rename (重命名)" },
+    { "<leader>cs", desc = "📝 Symbols (符号)" },
 
-      -- Git (版本控制)
-      ["<leader>gs"] = { "📋 Status (状态)" },
-      ["<leader>gd"] = { "📊 Diff (差异)" },
-      ["<leader>gb"] = { "📦 Blame (追溯)" },
-      ["<leader>gc"] = { "📜 Commits (提交)" },
-      ["<leader>gi"] = { "📥 Issues (问题)" },
-      ["<leader>gp"] = { "🔀 Pull Requests (拉取请求)" },
+    -- ================= UI (界面) =================
+    { "<leader>ul", desc = "🔆 Line (行号)" },
+    { "<leader>uw", desc = "🌊 Wrap (换行)" },
+    { "<leader>ui", desc = "🔹 Indent (缩进线)" },
 
-      -- Code / LSP (代码)
-      ["<leader>cc"] = { "💡 Actions (代码操作)" },
-      ["<leader>cf"] = { "✨ Format (格式化)" },
-      ["<leader>cr"] = { "✏️ Rename (重命名)" },
-      ["<leader>cs"] = { "📝 Symbols (符号)" },
-
-      -- UI (界面)
-      ["<leader>ul"] = { "🔆 Line (行号)" },
-      ["<leader>uw"] = { "🌊 Wrap (换行)" },
-      ["<leader>ui"] = { "🔹 Indent (缩进线)" },
-
-      -- Windows (窗口)
-      ["<leader>wd"] = { "❌ Delete (关闭)" },
-      ["<leader>wm"] = { "🔲 Maximize (最大化)" },
-      ["<leader>wv"] = { "⬇️ Split Vert (垂直分割)" },
-      ["<leader>ws"] = { "➡️ Split Horz (水平分割)" },
-    }
-
-    -- 将翻译应用到 defaults 中 (合并而不是覆盖)
-    for k, v in pairs(translations) do
-      opts.defaults[k] = v
-    end
+    -- ================= Windows (窗口) =================
+    { "<leader>wd", desc = "❌ Delete (关闭)" },
+    { "<leader>wm", desc = "🔲 Maximize (最大化)" },
+    { "<leader>wv", desc = "⬇️ Split Vert (垂直分割)" },
+    { "<leader>ws", desc = "➡️ Split Horz (水平分割)" },
+  },
+  
+  -- 组节点（分类标题）必须在 config 中通过 which-key API 注册
+  config = function(_, opts)
+    -- 确保 opts 存在并初始化插件
+    require("which-key").setup(opts or {})
+    
+    -- 注册分组名称
+    require("which-key").add({
+      { "<leader>b", group = "📂 Buffers (缓冲区)" },
+      { "<leader>c", group = "💻 Code (代码操作)" },
+      { "<leader>d", group = "🐞 Debug (调试)" },
+      { "<leader>f", group = "🔍 Find (查找)" },
+      { "<leader>g", group = "🔀 Git (版本控制)" },
+      { "<leader>l", group = "🔎 LSP (语言服务)" },
+      { "<leader>n", group = "🔔 Notify (通知)" },
+      { "<leader>p", group = "📦 Project (项目)" },
+      { "<leader>q", group = "🚪 Quit (退出)" },
+      { "<leader>s", group = "🔍 Search (搜索)" },
+      { "<leader>t", group = "💻 Terminal (终端)" },
+      { "<leader>u", group = "🎨 UI (界面设置)" },
+      { "<leader>w", group = "🪟 Windows (窗口)" },
+      { "<leader>x", group = "❌ Diag (诊断)" },
+    })
   end,
 }
