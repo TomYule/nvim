@@ -58,6 +58,13 @@ require("lazy").setup({
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = true }, -- automatically check for plugin updates
+  rocks = {
+    enabled = false, -- disable luarocks to avoid errors
+  },
+  ui = {
+    -- use snacks.picker as the UI for lazy
+    picker = "snacks",
+  },
   performance = {
     rtp = {
       -- disable some rtp plugins
